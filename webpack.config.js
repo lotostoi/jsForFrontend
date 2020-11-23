@@ -1,7 +1,8 @@
 const path = require('path')
+require('babel-polyfill')
 
 let conf = {
-  entry: './src/index.js',
+  entry: { app: ['babel-polyfill', './src/main.js'] },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js',
