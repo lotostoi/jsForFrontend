@@ -1,7 +1,7 @@
 const path = require('path')
 
 let conf = {
-  entry: './src/index.js',
+  entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js',
@@ -18,6 +18,16 @@ let conf = {
       },
     ],
   },
+  devServer: {
+		overlay: true,
+		proxy: {
+			'/js-hw-api/**': {
+				target: 'http://faceprog.ru/',
+				secure: false,
+				changeOrigin: true
+			}
+		}
+	}
 }
 
 module.exports = (env, argv) => {
