@@ -17,7 +17,7 @@ window.addEventListener('load', function(){
 		try{
 			let parser = new item.ep(email1);
 
-			this.console.log(parser.Email);
+			
 			this.console.log(parser.isCorrect);
 			this.console.log(parser.name);
 			this.console.log(parser.domain);
@@ -38,6 +38,7 @@ window.addEventListener('load', function(){
 			let cleverDiv = item.wo(div, function(prop, val){
 				console.log(prop, val);
 			});
+	
 
 			cleverDiv.innerHTML = '<strong>HTML</strong><em>Changed</em>';
 			/* 
