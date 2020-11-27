@@ -11,8 +11,7 @@ async function cb(f, id = null) {
     let info = JSON.parse(typeof f === 'function' ? await f(id) : await f)
     return +info.code === 200 ? info : info.status
   } catch (e) {
-	  console.log(f);
-    throw `when calling function "${f.name}" you have the following: ${e}`
+    throw e
   }
 }
 
