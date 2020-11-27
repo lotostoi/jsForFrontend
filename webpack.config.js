@@ -1,5 +1,5 @@
 const path = require('path')
-
+require("@babel/polyfill");
 let conf = {
   entry: './src/main.js',
   output: {
@@ -27,7 +27,9 @@ let conf = {
 				changeOrigin: true
 			}
 		}
-	}
+  },
+ 
+  
 }
 
 module.exports = (env, argv) => {

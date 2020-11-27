@@ -27,5 +27,9 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.12.1",
+    "@babel/polyfill": "^7.12.1"
   }
 }
