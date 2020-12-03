@@ -1,35 +1,52 @@
 {
-  "name": "jsForFrontend",
+  "name": "js2geekbrains",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "serve": "webpack --mode development",
+    "start": "webpack-dev-server --open",
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lotostoi/jsForFrontend.git"
+    "url": "git+https://github.com/lotostoi/js2GeekBrains.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lotostoi/jsForFrontend/issues"
+    "url": "https://github.com/lotostoi/js2GeekBrains/issues"
   },
-  "homepage": "https://github.com/lotostoi/jsForFrontend#readme",
+  "homepage": "https://github.com/lotostoi/js2GeekBrains#readme",
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "babel-loader": "^8.2.1",
+    "@babel/plugin-syntax-class-properties": "^7.12.1",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "connect-history-api-fallback": "^1.6.0",
+    "copy-webpack-plugin": "^6.1.1",
+    "css-loader": "^4.3.0",
+    "css-minimizer-webpack-plugin": "^1.1.4",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "popper.js": "^1.16.1",
+    "postcss-loader": "^4.0.2",
+    "sass": "^1.26.11",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.2.2",
+    "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/plugin-proposal-private-methods": "^7.12.1",
-    "@babel/polyfill": "^7.12.1"
+    "axios": "^0.20.0"
   }
 }
