@@ -42,8 +42,8 @@ async function packPostBody(request) {
     request.data = data
   } else if (request.data instanceof FormData) {
     if (request.url.trim() === 'auth/login.php') {
-      let id = await fp()
-      request.data.append('deviceID', id)
+      let deviceID = await fp()
+      request.data.append('deviceID', deviceID)
     }
   }
   return request
@@ -58,8 +58,8 @@ function parseResponse(response) {
 
 async function errorResponse(error) {
   if (error.response.status === 401) {
-    let id = await fp()
-    let {res, accessToken} = await instance.put('auth/refresh/refresh.php', {deviceID: id})
+    let deviceID = await fp()
+    let {res, accessToken} =   await instance.put(`auth/refresh/refresh.php`, deviceID) 
     if (!res) {
       Form.show()
       cleanTokensData()
