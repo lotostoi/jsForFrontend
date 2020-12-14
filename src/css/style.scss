@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+body {
+  display: flex;
+  width: 1100px;
+  margin: 0 auto;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.field {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  margin: 10px 0 0;
+  & > label {
+    margin: 5px 0;
+    font-size: 1.5rem;
+  }
+  & > input {
+    display: flex;
+    min-height: 30px;
+    outline: none;
+    background-color: rgba(255, 145, 0, 0.335);
+    border: 1px solid rgba(128, 128, 128, 0.671);
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+.aticles {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+}
+
+button {
+  display: flex;
+  display: flex;
+  width: 30%;
+  min-height: 30px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+.article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  margin: 5px 0;
+  background-color: rgba(128, 128, 128, 0.431);
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.568);
+  }
+  &__delete {
+    display: flex;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 21, 0);
+    color: white;
+    &:hover {
+      background-color: rgb(148, 17, 5);
+    }
+    &:active {
+      transform: scale(.9);
+    }
+  }
+}

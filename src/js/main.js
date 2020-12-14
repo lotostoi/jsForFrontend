@@ -1,54 +1,60 @@
-const SICRET_KEY = '991912ac966a68d2e79437171700dd01'
+import '../css/style.scss'
+import server from './server'
+import { Article, Form } from './addTools'
+import { setTokens } from './tokens'
+import 'font-awesome/scss/font-awesome.scss'
 import '@babel/polyfill'
-import * as http from './articles'
+import Fingerprint2 from 'fingerprintjs2'
 
-let art = new FormData()
-art.append('title', 'Профисификация кода')
-art.append(
-  'content',
-  'Код без промисов бывает жестью, но и с ними можно изобразить много странного.'
-)
-;(async () => {
+const SECRET_KEY = '991912ac966a68d2e79437171700dd01'
+
+const articles = document.querySelector('.articles')
+
+Form.hide()
+
+window.onload = async () => {
   try {
-    let add = await http.add(art)
-    console.log('Результат добваления статьи: ', add)
+    await server.get('auth/check.php')
 
-    let articles = await http.all()
-    console.log('Результат результат получения всех статей: ', articles)
-    console.log('articles count = ' + articles.length)
-    let ind = Math.floor(Math.random() * articles.length)
+    let fp = await getFp()
 
-    console.log('select index ' + ind + ', id = ' + articles[ind].id)
+    async function getFp() {
+      let done = await Fingerprint2.get({}, resolve)
+        .then((cmps) => cmps.map((cmp) => cmp.value).join(''))
+        .then(Fingerprint2.x64hash128)
+      if (window.requestIdleCallback) {
+        requestIdleCallback(()=>done)
+      } else {
+        setTimeout(()=>done, 200)
+      }
+    }
 
-    let article = await http.getById(articles[ind].id)
-    console.log(
-      `Результат результат получения статьи  c id: ${articles[ind].id}: `,
-      article
-    )
+    document.querySelector('body').addEventListener('click', async (e) => {
+      e.preventDefault()
 
-    let edit = await http.change({
-      id: article.id,
-      title: 'test',
-      content: 'test',
+      if (e.target.id === 'getAll') {
+        let allArticles = await server.get('articles.php')
+        articles.innerHTML = ''
+        allArticles.forEach((a) => {
+          let article = new Article(a)
+          articles.insertAdjacentHTML('beforeend', article.rander())
+        })
+      }
+
+      // authorization
+      if (e.target.id === 'auth') {
+        let user = new FormData(document.querySelector('form'))
+        user.append('deviceID', 'test')
+        let { res, accessToken } = await server.post('auth/login.php', user)
+        if (res) {
+          setTokens(accessToken)
+          Form.hide()
+        } else {
+          throw new Error("Server's answer isn't correct...")
+        }
+      }
     })
-    console.log(
-      `Результат результат изменения статьи  c id: ${articles[ind].id}: `,
-      edit
-    )
-
-    article = await http.getById(article.id)
-    console.log(
-      `Результат получения измененой статьи  c id: ${articles[ind].id} : `,
-      article
-    )
-
-    let del = await http.deleteById(article.id)
-    console.log(`Результат результат удаления статьи c id: ` + del)
-
-   let error_add = await http.add({})
-   console.log(`Результат добавления статьи с неверным форматом: `, error_add)
-    
   } catch (e) {
     console.log(e)
   }
-})()
+}

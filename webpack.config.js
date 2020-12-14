@@ -48,6 +48,10 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.(svg|woff|woff2|ttf|eot|otf)([\?]?.*)$/,
+        loader: 'file-loader?name=assets/fonts/[name].[ext]',
+      },
     ],
   },
   performance: {
@@ -64,7 +68,7 @@ module.exports = {
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   plugins: [
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: isProduction ? true : false }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -89,7 +93,7 @@ module.exports = {
   devServer: {
     overlay: true,
     proxy: {
-      '/js-hw-api/**': {
+      '/js-normal-api/**': {
         target: 'http://faceprog.ru/',
         secure: false,
         changeOrigin: true,
