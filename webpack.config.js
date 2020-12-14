@@ -12,7 +12,7 @@ const webpack = require('webpack')
 const isProduction = process.argv.join('').includes('production')
 const isDevelopment = !isProduction
 
-module.exports = {
+const  conf = {
   context: path.resolve(__dirname, 'src'),
   mode: isProduction ? 'production' : 'development',
   entry: {
@@ -102,8 +102,8 @@ module.exports = {
   },
 }
 
-/* module.exports = (env, argv) => {
+module.exports = (env, argv) => {
   conf.devtool =
     argv.mode === 'production' ? false : 'eval-cheap-module-source-map'
   return conf
-} */
+} 
