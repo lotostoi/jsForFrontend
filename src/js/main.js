@@ -3,8 +3,7 @@ import server from './server'
 import { Article, Form } from './addTools'
 import { setTokens } from './tokens'
 import 'font-awesome/scss/font-awesome.scss'
-import '@babel/polyfill'
-
+//import '@babel/polyfill'
 
 const SECRET_KEY = '991912ac966a68d2e79437171700dd01'
 
@@ -21,11 +20,22 @@ window.onload = async () => {
 
       if (e.target.id === 'getAll') {
         let allArticles = await server.get('articles.php')
-        articles.innerHTML = ''
-        allArticles.forEach((a) => {
-          let article = new Article(a)
-          articles.insertAdjacentHTML('beforeend', article.rander())
-        })
+        if (!allArticles) {
+          Form.show()
+        } else {
+          articles.innerHTML = ''
+          allArticles.forEach((a) => {
+            let article = new Article(a)
+            articles.insertAdjacentHTML('beforeend', article.rander())
+          })
+        }
+      }
+
+      if (e.target.id === 'testRefresh') {
+         server.get('articles.php')
+         server.get('articles.php')
+         server.get('articles.php')
+     
       }
 
       // authorization
